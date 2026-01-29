@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+#TODO
+# Current issue: Font size seems dedicated in MacOS, awkward in other systems.
+# Update 1: sudo apt install ttf-mscorefonts-installer
+#           installed msttcorefonts package on Ubuntu to get Arial fonts.
+
 import random
 import os
 import argparse
@@ -65,15 +71,21 @@ def scramble_word(word):
 
 def load_font(font_size):
     """Attempt to load font with fallbacks"""
+    arial_bold = "/usr/share/fonts/truetype/msttcorefonts/Arial_Bold.ttf"
+    arial_italic = "/usr/share/fonts/truetype/msttcorefonts/Arial_Italic.ttf"
+    arial = "/usr/share/fonts/truetype/msttcorefonts/Arial.ttf"
     try:
-        return ImageFont.truetype("Arial Bold", font_size)
+        return ImageFont.truetype(arial_bold, font_size)
     except IOError:
         try:
-            return ImageFont.truetype("Arial", font_size, index=1)
+            print("Arial Bold not found, trying Arial italic...")
+            return ImageFont.truetype(arial_italic, font_size)
         except IOError:
             try:
-                return ImageFont.truetype("Arial", font_size)
+                print("Arial italic not found, trying Arial regular...")
+                return ImageFont.truetype(arial, font_size)
             except IOError:
+                print("Arial not found, using default font.")
                 return ImageFont.load_default()
 
 
