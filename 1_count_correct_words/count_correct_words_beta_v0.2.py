@@ -33,6 +33,15 @@ WORDS_BY_LENGTH = {
         "begin", "being", "below", "bench", "berry"]
 }
 
+# Alternative letters for generating incorrect words
+ALTERNATIVE_LETTERS = {
+    'aoceu': ['a', 'o', 'c', 'e', 'u'],
+    'bpdqg': ['b', 'p', 'd', 'q', 'g'],
+    'hnmr': ['h', 'n', 'm', 'r'],
+    'iltfjk': ['i', 'l', 't', 'f', 'j', 'k'],
+    'vwyxz': ['v', 'w', 'y', 'x', 'z'],
+}
+
 # Difficulty presets
 DIFFICULTY_PRESETS = {
     "1.1": {
