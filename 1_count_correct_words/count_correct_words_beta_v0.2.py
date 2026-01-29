@@ -92,7 +92,7 @@ def load_font(font_size):
     arial_italic = "/usr/share/fonts/truetype/msttcorefonts/Arial_Italic.ttf"
     arial = "/usr/share/fonts/truetype/msttcorefonts/Arial.ttf"
     try:
-        return ImageFont.truetype(arial_bold, font_size)
+        return ImageFont.truetype(arial, font_size)
     except IOError:
         try:
             print("Arial Bold not found, trying Arial italic...")
@@ -208,7 +208,7 @@ def render_text_image(text, font, angle):
     # Draw the text at the center
     center_pos = temp_size // 2
     try:
-        temp_draw.text((center_pos, center_pos), text, fill=(0, 0, 0), 
+        temp_draw.text((center_pos, center_pos), text, fill=(137, 81, 41), 
                       font=font, anchor="mm", stroke_width=3, stroke_fill=(0, 0, 0))
     except TypeError:
         # Fallback for older Pillow versions
