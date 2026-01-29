@@ -11,7 +11,7 @@ This folder contains a script to generate word puzzles where users must identify
 - **Output**: Generated images of word puzzles are saved in the `output/` directory. Image format is `<goal_word>_<correct_answer_of_count>.png`
 
 ### Example Output:
-![Example Output](1_count_correct_words/output/ant_1.png)
+![Example Output](1_count_correct_words/output/previous/ant_1.png)
 
 ---
 
