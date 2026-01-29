@@ -71,6 +71,11 @@ def scramble_word(word):
 
 def load_font(font_size):
     """Attempt to load font with fallbacks"""
+    #? MacOS:
+    # arial_bold = "Arial Bold"
+    # arial_italic = "Arial Italic"
+    # arial = "Arial"
+    #? Linux:
     arial_bold = "/usr/share/fonts/truetype/msttcorefonts/Arial_Bold.ttf"
     arial_italic = "/usr/share/fonts/truetype/msttcorefonts/Arial_Italic.ttf"
     arial = "/usr/share/fonts/truetype/msttcorefonts/Arial.ttf"
