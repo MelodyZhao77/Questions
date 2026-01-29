@@ -4,7 +4,8 @@
 # Current issue: Font size seems dedicated in MacOS, awkward in other systems.
 # Update 1: sudo apt install ttf-mscorefonts-installer
 #           installed msttcorefonts package on Ubuntu to get Arial fonts.
-# Update 2: Add difficulty presets 1.1 for given correct word counts.
+# Update 2: Add difficulty preset 1.1 for given correct word counts.
+# Update 3: Add difficulty preset 1.2 with clusters of words.
 
 import random
 import os
@@ -34,29 +35,12 @@ WORDS_BY_LENGTH = {
 
 # Difficulty presets
 DIFFICULTY_PRESETS = {
-    "easy": {
-        "word_length": 3,
-        "total_words_range": (5, 6),
-        "image_density": 0.3,
-        "font_size_range": (80, 100),
-    },
-    "medium": {
-        "word_length": 4,
-        "total_words_range": (7, 8),
-        "image_density": 0.5,
-        "font_size_range": (60, 80),
-    },
-    "hard": {
-        "word_length": 5,
-        "total_words_range": (9, 10),
-        "image_density": 0.7,
-        "font_size_range": (60, 80),
-    },
     "1.1": {
         "word_length": 3,
         "total_words_range": (6, 6),
         "correct_words_range": (1, 3),
         "image_density": 0.3,
+        "clustering": False,
         "font_size_range": (80, 100),
     },
     "1.2": {
@@ -64,6 +48,8 @@ DIFFICULTY_PRESETS = {
         "total_words_range": (8, 8),
         "correct_words_range": (3, 5),
         "image_density": 0.3,
+        "clustering": True,
+        "cluster_range": (2, 3),
         "font_size_range": (80, 100),
     }
 }
@@ -298,8 +284,6 @@ def generate_word_puzzle(difficulty="medium", correct_ratio=None, custom_word=No
     # Determine total words and correct ratio
     total_words = random.randint(*params["total_words_range"])
     correct_words_range = params.get("correct_words_range")
-    # if correct_ratio is None:
-    #     correct_ratio = random.uniform(0.2, 0.6)  # Between 20% and 60% correct
     correct_count = max(1, random.randint(*correct_words_range))
     
     # Choose word
@@ -378,12 +362,10 @@ def main():
         os.makedirs(default_output_dir)
         
     parser = argparse.ArgumentParser(description='Generate a word puzzle image')
-    parser.add_argument('--difficulty', choices=['easy', 'medium', 'hard', '1.1'], default='1.1',
+    parser.add_argument('--difficulty', choices=['1.1', '1.2'], default='1.2',
                         help='Difficulty level of the puzzle')
     parser.add_argument('--word', type=str, 
                         help='Specific word to use (must be 3-5 letters)')
-    # parser.add_argument('--correct_ratio', type=float,
-    #                     help='Ratio of correct words (0.0-1.0)')
     parser.add_argument('--output_dir', default=default_output_dir,
                         help='Directory to save the generated image')
     parser.add_argument('--count', type=int, default=1,
@@ -395,7 +377,6 @@ def main():
         # For multiple images with same word, we'll generate different layouts
         generate_word_puzzle(
             difficulty=args.difficulty,
-            # correct_ratio=args.correct_ratio,
             custom_word=args.word,
             output_dir=args.output_dir,
         )
