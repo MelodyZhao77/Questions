@@ -5,7 +5,9 @@
 # Update 1: sudo apt install ttf-mscorefonts-installer
 #           installed msttcorefonts package on Ubuntu to get Arial fonts.
 # Update 2: Add difficulty preset 1.1 for given correct word counts.
-# Update 3: Add difficulty preset 1.2 with clusters of words.
+# Update 2.1: Remove correct ratio option, use fixed correct word counts instead.
+# Update 3: Add alternative letters for generating incorrect words. No letter 's'
+# Update 4: Add difficulty preset 1.2 with clusters of words.
 
 import random
 import os
